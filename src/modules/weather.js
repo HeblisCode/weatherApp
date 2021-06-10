@@ -1,5 +1,8 @@
-const Weather = (function () {
-  const _API_KEY = "0762730ace1e0fb84186355a68037a6a";
+import getApiKey from "../API_KEY";
+import pubsub from "./pubsub";
+
+const Weather = function () {
+  const _API_KEY = getApiKey();
 
   async function _getCoords(cityName) {
     const response = await fetch(
@@ -10,18 +13,20 @@ const Weather = (function () {
     return coordsData;
   }
 
-  async function _getWeatherData(lat, lon) {
-    const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${_API_KEY}`,
-      { mode: "cors" }
-    );
-    return await response.json();
+  async function _getWeatherData(cityName) {
+    try {
+      const coords = await _getCoords(cityName);
+      const response = await fetch(
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${coords[0].lat}&exclude=minutely,alerts&lon=${coords[0].lon}&appid=${_API_KEY}`,
+        { mode: "cors" }
+      );
+      pubsub.publish("weatherDataFetched", await response.json());
+    } catch (error) {
+      pubsub.publish("cityNotFound");
+    }
   }
 
-  return {
-    _getCoords,
-    _getWeatherData,
-  };
-})();
+  pubsub.subscribe("getWeather", _getWeatherData);
+};
 
 export default Weather;
