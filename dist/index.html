@@ -8,12 +8,22 @@
     <script src="main.js" defer></script>
   </head>
   <body>
-    <form method="dialog" id="searchCityForm" novalidate>
-      <label for="searchCityInput">
-        <input type="text" id="searchCityInput" required placeholder="City" />
-        <span id="searchCityErrorMessage"></span>
-      </label>
-      <button id="searchCityButton">Test</button>
-    </form>
+    <header>
+      <div id="logo">
+        <img src="http://openweathermap.org/img/wn/01d@2x.png" alt="" />
+      </div>
+      <div id="formWrapper">
+        <form method="dialog" id="searchCityForm" novalidate>
+          <input type="text" id="searchCityInput" required placeholder="City" />
+          <button id="searchCityButton">OK</button>
+          <span id="searchCityErrorMessage"></span>
+        </form>
+      </div>
+      <div id="menu">
+        <button></button>
+      </div>
+    </header>
+    <div id="content"></div>
+    <footer>Made by HeblisCode</footer>
   </body>
 </html>

@@ -8,10 +8,10 @@ const cityForm = function () {
 
   function checkInputValidity() {
     if (inputText.validity.valid) {
-      inputText.classList.remove("invalidInput");
+      form.classList.remove("invalidInput");
       errorMessage.innerText = "";
     } else {
-      inputText.classList.add("invalidInput");
+      form.classList.add("invalidInput");
       if (inputText.validity.valueMissing) {
         errorMessage.innerText = "You need to fill this field";
       } else {
@@ -28,7 +28,6 @@ const cityForm = function () {
   searchButton.addEventListener("click", () => {
     if (inputText.validity.valid) {
       pubsub.publish("getWeather", inputText.value);
-      form.reset();
     }
   });
 

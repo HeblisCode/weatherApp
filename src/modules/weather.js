@@ -20,13 +20,27 @@ const Weather = function () {
         `https://api.openweathermap.org/data/2.5/onecall?lat=${coords[0].lat}&exclude=minutely,alerts&lon=${coords[0].lon}&appid=${_API_KEY}`,
         { mode: "cors" }
       );
-      pubsub.publish("weatherDataFetched", await response.json());
+      return await response.json();
     } catch (error) {
       pubsub.publish("cityNotFound");
     }
   }
 
-  pubsub.subscribe("getWeather", _getWeatherData);
+  async function publishWeatherData(cityName) {
+    try {
+      const data = await _getWeatherData(cityName);
+      pubsub.publish(
+        "currentWeatherData",
+        Object.assign(data.current, { cityName })
+      );
+      pubsub.publish("dailyWeatherData", data.daily);
+      pubsub.publish("hourlyWeatherData", data.hourly);
+    } catch (error) {
+      return;
+    }
+  }
+
+  pubsub.subscribe("getWeather", publishWeatherData);
 };
 
 export default Weather;

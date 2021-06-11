@@ -5,4 +5,6 @@ import pubsub from "./modules/pubsub";
 
 Weather();
 cityForm();
-pubsub.subscribe("weatherDataFetched", console.log);
+pubsub.subscribe("currentWeatherData", console.log);
+pubsub.subscribe("dailyWeatherData", console.log);
+pubsub.subscribe("hourlyWeatherData", console.log);
