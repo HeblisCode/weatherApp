@@ -29,13 +29,18 @@ const Weather = function () {
   async function publishWeatherData(cityName) {
     try {
       const data = await _getWeatherData(cityName);
+      console.log(data);
       pubsub.publish(
         "currentWeatherData",
-        Object.assign(data.current, { cityName })
+        Object.assign(data.current, {
+          city_name: cityName,
+          time_offset: data.timezone_offset,
+        })
       );
       pubsub.publish("dailyWeatherData", data.daily);
       pubsub.publish("hourlyWeatherData", data.hourly);
     } catch (error) {
+      console.error(error);
       return;
     }
   }
