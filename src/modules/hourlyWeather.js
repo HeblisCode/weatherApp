@@ -16,19 +16,49 @@ const createHourCard = function (hourData) {
   return container;
 };
 
+const createHourListElem = function (hourData) {
+  const container = createHourCard(hourData);
+
+  const rainPar = document.createElement("p");
+  rainPar.innerText = hourData.rainPar;
+  container.appendChild(rainPar);
+
+  return container;
+};
+
 const hourlyWeather = function (data) {
   const container = document.createElement("div");
-  const hour1 = createHourCard(data[0]);
-  const hour2 = createHourCard(data[1]);
-  const hour3 = createHourCard(data[2]);
-  const hour4 = createHourCard(data[3]);
-  const all48Hours = document.createElement("div");
+  const hourCards = document.createElement("div");
+  const hourList = document.createElement("div");
+  const expandIcon = document.createElement("span");
 
-  container.appendChild(hour1);
-  container.appendChild(hour2);
-  container.appendChild(hour3);
-  container.appendChild(hour4);
-  container.appendChild(all48Hours);
+  hourCards.id = "hourCards";
+  hourList.classList.add("hourList");
+
+  for (let i = 0; i < 4; i++) {
+    const hourCard = createHourCard(data[i]);
+    hourCard.classList.add("hourCard");
+    hourCards.appendChild(hourCard);
+  }
+
+  data.forEach((hour) => {
+    const hourListElem = createHourListElem(hour);
+    hourListElem.classList.add("hourListElem");
+    hourList.appendChild(hourListElem);
+  });
+
+  //Expand button
+  expandIcon.classList.add("material-icons");
+  expandIcon.classList.add("expandButton");
+  expandIcon.innerText = "expand_more";
+  expandIcon.addEventListener("click", () => {
+    expandIcon.classList.toggle("expandRotated");
+    hourList.classList.toggle("show");
+  });
+
+  container.appendChild(hourCards);
+  container.appendChild(expandIcon);
+  container.appendChild(hourList);
 
   container.id = "hourlyWeather";
 

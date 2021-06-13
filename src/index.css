@@ -151,6 +151,41 @@ form > #searchCityErrorMessage {
   grid-column: span 2;
 }
 
+/*HOURLY WEATHER STYLING*******************************************/
+#hourCards {
+  width: 100%;
+  background-color: rgb(174, 223, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.7rem;
+  padding: 1rem 0;
+}
+.hourCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.hourCard > img {
+  width: 100%;
+}
+.hourList {
+  display: none;
+  width: 100%;
+}
+.hourListElem {
+  background-color: rgb(174, 223, 255);
+  margin-top: 0.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 3rem;
+}
+.hourListElem > img {
+  height: 100%;
+}
+
 /*FOOTER STYLING***************************************************/
 footer {
   background-color: seagreen;
