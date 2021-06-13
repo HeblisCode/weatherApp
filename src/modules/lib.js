@@ -22,8 +22,8 @@ function celsiusFromKelvin(temp) {
   return temp - 273.15;
 }
 
-function farenFromKelvin(temp) {
+function fahrenFromKelvin(temp) {
   return ((temp - 273.15) * 9) / 5 + 32;
 }
 
-export { getDateFromUnix, celsiusFromKelvin, farenFromKelvin };
+export { getDateFromUnix, celsiusFromKelvin, fahrenFromKelvin };

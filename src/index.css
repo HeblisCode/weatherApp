@@ -106,40 +106,49 @@ form > #searchCityErrorMessage {
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin: 0.5rem;
+  margin: 0.7rem;
 }
 
 /*CURRENT WEATHER STYLING******************************************/
 #currentWeather {
   width: 100%;
   background-color: rgb(174, 223, 255);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 0.9rem;
-  border-radius: 0.5rem;
-  -webkit-box-shadow: 0px 3px 12px 3px rgba(0, 0, 0, 0.3);
-  box-shadow: 0px 3px 12px 3px rgba(0, 0, 0, 0.3);
-}
-#currentLeftGroup {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  margin-bottom: 1rem;
-}
-#currentLeftGroup > img {
-  height: 4.5rem;
-}
-#currentLeftGroup > p {
-  font-weight: bold;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 10rem 2rem auto;
+  font-size: 0.8rem;
 }
 #currentRightGroup {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  flex-direction: column;
+}
+#currentRightGroup > img {
+  height: 70%;
+}
+#currentRightGroup > p {
+  font-size: 2rem;
+}
+#currentLeftGroup {
+  display: flex;
+  align-items: flex-start;
   justify-content: center;
   flex-direction: column;
   margin-right: 1rem;
+}
+#currentLeftGroup > h2 {
+  font-size: 2rem;
+}
+.expandButton {
+  grid-column: span 2;
+  align-self: center;
+  justify-self: center;
+}
+.hiddenGroup {
+  display: none;
+  grid-column: span 2;
 }
 
 /*FOOTER STYLING***************************************************/
@@ -148,4 +157,12 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/*CLASSES**********************************************************/
+.show {
+  display: block;
+}
+.expandRotated {
+  transform: rotate(180deg);
 }
