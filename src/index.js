@@ -7,4 +7,3 @@ import view from "./modules/view";
 Weather();
 cityForm();
 view();
-pubsub.subscribe("currentWeatherData", console.log);

@@ -106,7 +106,8 @@ form > #searchCityErrorMessage {
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin: 0.7rem;
+  padding: 0.7rem;
+  background-color: rgb(174, 223, 255);
 }
 
 /*CURRENT WEATHER STYLING******************************************/
@@ -114,9 +115,11 @@ form > #searchCityErrorMessage {
   width: 100%;
   background-color: rgb(174, 223, 255);
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: 10rem 2rem auto;
+  grid-template-columns: 3fr 2fr;
+  grid-template-rows: 10rem auto auto;
   font-size: 0.8rem;
+  justify-items: center;
+  align-content: center;
 }
 #currentRightGroup {
   display: flex;
@@ -143,8 +146,6 @@ form > #searchCityErrorMessage {
 }
 .expandButton {
   grid-column: span 2;
-  align-self: center;
-  justify-self: center;
 }
 .hiddenGroup {
   display: none;

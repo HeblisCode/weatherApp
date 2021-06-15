@@ -1,4 +1,5 @@
 import currentWeather from "./currentWeather";
+import dailyWeather from "./dailyWeather";
 import hourlyWeather from "./hourlyWeather";
 import pubsub from "./pubsub";
 
@@ -14,15 +15,24 @@ const view = function () {
   }
 
   function renderHourly(data) {
-    const current = document.querySelector("#hourlyWeather");
-    if (current) {
-      current.remove();
+    const hourly = document.querySelector("#hourlyWeather");
+    if (hourly) {
+      hourly.remove();
     }
     content.appendChild(hourlyWeather(data));
   }
 
+  function renderDaily(data) {
+    const daily = document.querySelector("#dailyWeather");
+    if (daily) {
+      daily.remove();
+    }
+    content.appendChild(dailyWeather(data));
+  }
+
   pubsub.subscribe("currentWeatherData", renderCurrent);
   pubsub.subscribe("hourlyWeatherData", renderHourly);
+  pubsub.subscribe("dailyWeatherData", renderDaily);
 };
 
 export default view;

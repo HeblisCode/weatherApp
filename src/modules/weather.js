@@ -4,7 +4,7 @@ import { getDateFromUnix, celsiusFromKelvin, fahrenFromKelvin } from "./lib";
 
 const Weather = function () {
   const _API_KEY = getApiKey();
-  const _tempScale = "fahrenheit";
+  const _tempScale = "celsius";
 
   async function _getCoords(cityName) {
     const response = await fetch(
@@ -38,6 +38,8 @@ const Weather = function () {
 
   function _parseCurrentWeatherData(currentData) {
     const date = getDateFromUnix(currentData.dt, currentData.timezone_offset);
+    const rain = currentData.rain ? currentData.rain["1h"] : "0";
+    const weatherDesc = currentData.weather[0].description;
 
     return {
       cityNamePar: currentData.cityName,
@@ -45,34 +47,41 @@ const Weather = function () {
       iconUrl: `http://openweathermap.org/img/wn/${currentData.weather[0].icon}@2x.png`,
       tempPar: _tempConversion(currentData.temp),
       humPar: "Humidity: " + currentData.humidity + "%",
-      rainPar: "Rain: 0mm",
+      rainPar: "Rain: " + rain + "mm",
       feelsLikePar: "Feels like: " + currentData.feels_like,
       windPar: "Wind speed: " + currentData.wind_speed,
       uvPar: "UV index: " + currentData.uvi,
-      weatherPar: currentData.weather[0].description,
+      weatherPar: weatherDesc[0].toUpperCase() + weatherDesc.slice(1),
     };
   }
 
   function _parseHourlyWeatherData(hourlyData) {
     return hourlyData.map((hourData) => {
-      const hourPar = getDateFromUnix(
-        hourData.dt,
-        hourlyData.timezone_offset
-      ).hour;
-      const iconUrl = `http://openweathermap.org/img/wn/${hourData.weather[0].icon}@2x.png`;
-      const tempPar = _tempConversion(hourData.temp);
-      const rainPar = "Rain: " + "0mm";
+      const date = getDateFromUnix(hourData.dt, hourlyData.timezone_offset);
+      const rain = hourData.rain ? hourData.rain["1h"] : "0";
+
       return {
-        hourPar,
-        iconUrl,
-        tempPar,
-        rainPar,
+        hourPar: date.hour,
+        iconUrl: `http://openweathermap.org/img/wn/${hourData.weather[0].icon}@2x.png`,
+        tempPar: _tempConversion(hourData.temp),
+        rain: hourData.rain ? hourData.rain["1h"] : "0",
+        rainPar: "Rain: " + rain + "mm",
       };
     });
   }
 
   function _parseDailyWeatherData(dailyData) {
-    return dailyData;
+    return dailyData.map((dayData) => {
+      const rain = dayData.rain ? dayData.rain : 0;
+
+      return {
+        maxTempPar: _tempConversion(dayData.temp.max),
+        minTempPar: _tempConversion(dayData.temp.min),
+        iconUrl: `http://openweathermap.org/img/wn/${dayData.weather[0].icon}@2x.png`,
+        dayPar: getDateFromUnix(dayData.dt, dailyData.timezone_offset).day,
+        rainPar: "Rain: " + rain + "mm",
+      };
+    });
   }
 
   async function publishWeatherData(cityName) {
