@@ -10,7 +10,7 @@ settingStorage();
 view();
 cityForm();
 
-const button = document.querySelector("#tempScaleButton");
+const button = document.querySelector("#tempScale");
 button.addEventListener("click", () => {
   pubsub.publish("toggleTempScale");
 });

@@ -41,12 +41,18 @@ const Weather = function () {
 
   function _parseCurrentWeatherData(currentData) {
     const date = getDateFromUnix(currentData.dt, currentData.timezone_offset);
-    const rain = currentData.rain ? currentData.rain["1h"] : "0";
+    const rain = currentData.rain ? currentData.rain["1h"] : "0.00";
     const weatherDesc = currentData.weather[0].description;
+    const isDay =
+      currentData.dt > currentData.sunrise &&
+      currentData.dt < currentData.sunset;
 
+    console.log(isDay);
     return {
+      isDay: isDay,
       mainWeather: currentData.weather[0].main,
-      cityNamePar: currentData.cityName,
+      cityNamePar:
+        currentData.cityName[0].toUpperCase() + currentData.cityName.slice(1),
       datePar: date.day + " " + date.hour,
       iconUrl: `http://openweathermap.org/img/wn/${currentData.weather[0].icon}@2x.png`,
       tempPar: _tempConversion(currentData.temp),
@@ -60,7 +66,7 @@ const Weather = function () {
   function _parseHourlyWeatherData(hourlyData) {
     return hourlyData.map((hourData, i) => {
       let date = getDateFromUnix(hourData.dt, hourlyData.timezone_offset).hour;
-      const rain = hourData.rain ? hourData.rain["1h"] : "0";
+      const rain = hourData.rain ? hourData.rain["1h"] : "0.00";
       if (i === 0) {
         date = "Now";
       }
@@ -68,7 +74,6 @@ const Weather = function () {
         hourPar: date,
         iconUrl: `http://openweathermap.org/img/wn/${hourData.weather[0].icon}@2x.png`,
         tempPar: _tempConversion(hourData.temp),
-        rain: hourData.rain ? hourData.rain["1h"] : "0",
         rainPar: "Rain: " + rain + "mm",
       };
     });
@@ -76,7 +81,7 @@ const Weather = function () {
 
   function _parseDailyWeatherData(dailyData) {
     return dailyData.map((dayData, i) => {
-      const rain = dayData.rain ? dayData.rain : 0;
+      const rain = dayData.rain ? dayData.rain : "0.00";
       let date = getDateFromUnix(dayData.dt, dailyData.timezone_offset).day;
       if (i === 0) {
         date = "Today";

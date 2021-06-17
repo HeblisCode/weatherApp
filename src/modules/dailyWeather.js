@@ -4,24 +4,24 @@ const createListElement = function (dayData) {
   const rainPar = document.createElement("p");
   const rainIcon = document.createElement("span");
   const rainContainer = document.createElement("div");
-  const maxTempPar = document.createElement("p");
-  const minTempPar = document.createElement("p");
+  const TempPar = document.createElement("p");
   const icon = document.createElement("img");
 
   dayPar.innerText = dayData.dayPar;
+  dayPar.classList.add("firstColumn");
   rainPar.innerText = dayData.rainPar;
   rainIcon.innerText = "cloud_queue";
   rainIcon.classList.add("material-icons");
-  maxTempPar.innerText = dayData.maxTempPar;
-  minTempPar.innerText = dayData.minTempPar;
+  rainContainer.classList.add("lastColumn");
+  TempPar.innerText = dayData.minTempPar + " - " + dayData.maxTempPar;
   icon.src = dayData.iconUrl;
 
   rainContainer.appendChild(rainIcon);
   rainContainer.appendChild(rainPar);
   container.appendChild(dayPar);
   container.appendChild(icon);
-  container.appendChild(maxTempPar);
-  container.appendChild(minTempPar);
+
+  container.appendChild(TempPar);
   container.appendChild(rainContainer);
 
   return container;

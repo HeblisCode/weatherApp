@@ -16,7 +16,7 @@ const currentWeather = function (data) {
   const windContainer = document.createElement("div");
 
   //Containers
-  const topRow = document.createElement("div");
+  const bottomRow = document.createElement("div");
   const main = document.createElement("div");
 
   //Filling elements
@@ -45,10 +45,10 @@ const currentWeather = function (data) {
   windContainer.appendChild(windIcon);
   windContainer.appendChild(windPar);
 
-  topRow.id = "currentTopRow";
-  topRow.appendChild(humContainer);
-  topRow.appendChild(rainContainer);
-  topRow.appendChild(windContainer);
+  bottomRow.id = "currentTopRow";
+  bottomRow.appendChild(humContainer);
+  bottomRow.appendChild(rainContainer);
+  bottomRow.appendChild(windContainer);
 
   main.id = "currentMain";
   main.appendChild(cityNamePar);
@@ -56,8 +56,8 @@ const currentWeather = function (data) {
   main.appendChild(tempPar);
   main.append(weatherPar);
 
-  container.appendChild(topRow);
   container.appendChild(main);
+  container.appendChild(bottomRow);
 
   return container;
 };
