@@ -13,9 +13,7 @@
   </head>
   <body>
     <header>
-      <div id="logo">
-        <img src="http://openweathermap.org/img/wn/01d@2x.png" alt="" />
-      </div>
+      <span id="tempScaleButton" class="material-icons">thermostat</span>
       <div id="formWrapper">
         <form method="dialog" id="searchCityForm" novalidate>
           <input type="text" id="searchCityInput" required placeholder="City" />
@@ -23,9 +21,8 @@
           <span id="searchCityErrorMessage"></span>
         </form>
       </div>
-      <div id="menu">
-        <button></button>
-      </div>
+
+      <span id="refresh" class="material-icons">refresh</span>
     </header>
     <div id="content"></div>
     <footer>Made by HeblisCode</footer>
