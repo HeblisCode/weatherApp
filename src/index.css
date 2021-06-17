@@ -1,15 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald&family=Staatliches&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Rubik", sans-serif;
+  font-family: "Oswald", sans-serif;
 }
 html {
   height: 100%;
 }
 body {
+  position: relative;
   min-height: 100vh;
+  width: 100vw;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 3rem 1fr 1.5rem;
@@ -106,85 +109,83 @@ form > #searchCityErrorMessage {
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 0.7rem;
   background-color: rgb(174, 223, 255);
 }
 
 /*CURRENT WEATHER STYLING******************************************/
 #currentWeather {
   width: 100%;
-  background-color: rgb(174, 223, 255);
-  display: grid;
-  grid-template-columns: 3fr 2fr;
-  grid-template-rows: 10rem auto auto;
-  font-size: 0.8rem;
-  justify-items: center;
-  align-content: center;
 }
-#currentRightGroup {
+#currentTopRow {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#currentTopRow > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 18%;
+  max-width: 60px;
+}
+#currentMain {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1rem;
   flex-direction: column;
+  margin: 1rem 0;
 }
-#currentRightGroup > img {
-  height: 70%;
-}
-#currentRightGroup > p {
+#currentMain > h2 {
   font-size: 2rem;
 }
-#currentLeftGroup {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  flex-direction: column;
-  margin-right: 1rem;
+#currentTemp {
+  font-size: 3.5rem;
 }
-#currentLeftGroup > h2 {
-  font-size: 2rem;
-}
-.expandButton {
-  grid-column: span 2;
-}
-.hiddenGroup {
-  display: none;
-  grid-column: span 2;
-}
-
 /*HOURLY WEATHER STYLING*******************************************/
 #hourCards {
-  width: 100%;
+  width: 100vw;
   background-color: rgb(174, 223, 255);
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
-  justify-content: center;
   margin-top: 0.7rem;
-  padding: 1rem 0;
+  overflow-x: auto;
 }
 .hourCard {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  flex: 0 0 25%;
 }
 .hourCard > img {
   width: 100%;
 }
-.hourList {
-  display: none;
+
+/*DAILY WEATHER STYLING********************************************/
+#dailyWeather {
   width: 100%;
 }
-.hourListElem {
+#dailyWeather > div {
   background-color: rgb(174, 223, 255);
   margin-top: 0.3rem;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+
   height: 3rem;
 }
-.hourListElem > img {
-  height: 100%;
+#dailyWeather > div > div {
+  display: flex;
+  width: 18%;
+  max-width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#dailyWeather > div > img {
+  height: 80%;
 }
 
 /*FOOTER STYLING***************************************************/

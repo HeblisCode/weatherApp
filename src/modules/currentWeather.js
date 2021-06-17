@@ -3,64 +3,61 @@ const currentWeather = function (data) {
   const container = document.createElement("div");
   const cityNamePar = document.createElement("h2");
   const datePar = document.createElement("p");
-  const weatherIcon = document.createElement("img");
+  const weatherPar = document.createElement("p");
   const tempPar = document.createElement("p");
   const humPar = document.createElement("p");
+  const humIcon = document.createElement("span");
+  const humContainer = document.createElement("div");
   const rainPar = document.createElement("p");
-  const UVPar = document.createElement("p");
-  const weatherPar = document.createElement("p");
-  const feelsLikePar = document.createElement("p");
+  const rainIcon = document.createElement("span");
+  const rainContainer = document.createElement("div");
   const windPar = document.createElement("p");
-  const expandIcon = document.createElement("span");
+  const windIcon = document.createElement("span");
+  const windContainer = document.createElement("div");
 
   //Containers
-  const currentRightGroup = document.createElement("div");
-  const currentLeftGroup = document.createElement("div");
-  const hiddenGroup = document.createElement("div");
+  const topRow = document.createElement("div");
+  const main = document.createElement("div");
 
   //Filling elements
   cityNamePar.innerText = data.cityNamePar;
   datePar.innerText = data.datePar;
-  weatherIcon.src = data.iconUrl;
   tempPar.innerText = data.tempPar;
+  tempPar.id = "currentTemp";
   humPar.innerText = data.humPar;
+  humIcon.innerText = "water_drop";
+  humIcon.classList.add("material-icons");
   rainPar.innerText = data.rainPar;
-  UVPar.innerText = data.uvPar;
-  feelsLikePar.innerText = data.feelsLikePar;
+  rainIcon.innerText = "cloud_queue";
+  rainIcon.classList.add("material-icons");
   windPar.innerText = data.windPar;
+  windIcon.innerText = "air";
+  windIcon.classList.add("material-icons");
   weatherPar.innerText = data.weatherPar;
   container.id = "currentWeather";
 
-  //Expand button
-  expandIcon.classList.add("material-icons");
-  expandIcon.classList.add("expandButton");
-  expandIcon.innerText = "expand_more";
-  expandIcon.addEventListener("click", () => {
-    expandIcon.classList.toggle("expandRotated");
-    hiddenGroup.classList.toggle("show");
-  });
-
   //Nesting
-  currentRightGroup.id = "currentRightGroup";
-  currentRightGroup.appendChild(weatherIcon);
-  currentRightGroup.appendChild(tempPar);
 
-  currentLeftGroup.id = "currentLeftGroup";
-  currentLeftGroup.appendChild(cityNamePar);
-  currentLeftGroup.appendChild(datePar);
-  currentLeftGroup.append(weatherPar);
-  currentLeftGroup.appendChild(rainPar);
+  humContainer.appendChild(humIcon);
+  humContainer.appendChild(humPar);
+  rainContainer.appendChild(rainIcon);
+  rainContainer.appendChild(rainPar);
+  windContainer.appendChild(windIcon);
+  windContainer.appendChild(windPar);
 
-  hiddenGroup.classList.add("hiddenGroup");
-  hiddenGroup.appendChild(humPar);
-  hiddenGroup.appendChild(UVPar);
-  hiddenGroup.appendChild(feelsLikePar);
-  hiddenGroup.appendChild(windPar);
+  topRow.id = "currentTopRow";
+  topRow.appendChild(humContainer);
+  topRow.appendChild(rainContainer);
+  topRow.appendChild(windContainer);
 
-  container.appendChild(currentLeftGroup);
-  container.appendChild(currentRightGroup);
-  container.appendChild(expandIcon);
-  container.appendChild(hiddenGroup);
+  main.id = "currentMain";
+  main.appendChild(cityNamePar);
+  main.appendChild(datePar);
+  main.appendChild(tempPar);
+  main.append(weatherPar);
+
+  container.appendChild(topRow);
+  container.appendChild(main);
 
   return container;
 };

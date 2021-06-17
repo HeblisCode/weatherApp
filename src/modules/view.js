@@ -5,34 +5,22 @@ import pubsub from "./pubsub";
 
 const view = function () {
   const content = document.querySelector("#content");
+  const body = document.querySelector("body");
 
-  function renderCurrent(data) {
-    const current = document.querySelector("#currentWeather");
-    if (current) {
-      current.remove();
-    }
-    content.appendChild(currentWeather(data));
+  function render(data) {
+    content.innerHTML = "";
+    body.setAttribute("class", data.current.mainWeather);
+
+    const current = currentWeather(data.current);
+    const hourly = hourlyWeather(data.hourly);
+    const daily = dailyWeather(data.daily);
+
+    content.appendChild(current);
+    content.appendChild(hourly);
+    content.appendChild(daily);
   }
 
-  function renderHourly(data) {
-    const hourly = document.querySelector("#hourlyWeather");
-    if (hourly) {
-      hourly.remove();
-    }
-    content.appendChild(hourlyWeather(data));
-  }
-
-  function renderDaily(data) {
-    const daily = document.querySelector("#dailyWeather");
-    if (daily) {
-      daily.remove();
-    }
-    content.appendChild(dailyWeather(data));
-  }
-
-  pubsub.subscribe("currentWeatherData", renderCurrent);
-  pubsub.subscribe("hourlyWeatherData", renderHourly);
-  pubsub.subscribe("dailyWeatherData", renderDaily);
+  pubsub.subscribe("weatherData", render);
 };
 
 export default view;
