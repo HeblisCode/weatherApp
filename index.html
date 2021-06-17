@@ -13,18 +13,21 @@
   </head>
   <body>
     <header>
-      <span id="tempScaleButton" class="material-icons">thermostat</span>
+      <div class="headerButtonContainer">
+        <span id="tempScale" class="material-icons">thermostat</span>
+      </div>
       <div id="formWrapper">
         <form method="dialog" id="searchCityForm" novalidate>
           <input type="text" id="searchCityInput" required placeholder="City" />
-          <button id="searchCityButton">OK</button>
+          <span class="material-icons" id="searchCityButton">search</span>
           <span id="searchCityErrorMessage"></span>
         </form>
+      </div class="headerButtonContainer">
+      <div>
+        <span id="refresh" class="material-icons">refresh</span>
       </div>
-
-      <span id="refresh" class="material-icons">refresh</span>
     </header>
     <div id="content"></div>
-    <footer>Made by HeblisCode</footer>
+    <footer><a href="https://github.com/HeblisCode/weatherApp">Made by HeblisCode</a></footer>
   </body>
 </html>
