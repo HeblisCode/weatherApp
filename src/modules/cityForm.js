@@ -29,6 +29,12 @@ const cityForm = function () {
     pubsub.publish("changeLastCity", inputText.value);
   });
 
+  form.addEventListener("keydown", (e) => {
+    if (e.keyCode === 13) {
+      pubsub.publish("changeLastCity", inputText.value);
+    }
+  });
+
   function cityNotFound() {
     inputText.setCustomValidity("City not found!");
     checkInputValidity();

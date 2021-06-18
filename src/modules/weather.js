@@ -7,7 +7,7 @@ const Weather = function () {
 
   async function _getCoords(cityName) {
     const response = await fetch(
-      `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=${_API_KEY}`,
+      `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=${_API_KEY}`,
       { mode: "cors" }
     );
     const coordsData = await response.json();
@@ -42,7 +42,7 @@ const Weather = function () {
       cityNamePar:
         currentData.cityName[0].toUpperCase() + currentData.cityName.slice(1),
       datePar: date.day + " " + date.hour,
-      iconUrl: `http://openweathermap.org/img/wn/${currentData.weather[0].icon}@2x.png`,
+      iconUrl: `https://openweathermap.org/img/wn/${currentData.weather[0].icon}@2x.png`,
       tempPar: temp.value + temp.scale,
       humPar: currentData.humidity + "%",
       rainPar: rain + "mm",
@@ -61,7 +61,7 @@ const Weather = function () {
       }
       return {
         hourPar: date,
-        iconUrl: `http://openweathermap.org/img/wn/${hourData.weather[0].icon}@2x.png`,
+        iconUrl: `https://openweathermap.org/img/wn/${hourData.weather[0].icon}@2x.png`,
         tempPar: temp.value + temp.scale,
         rainPar: "Rain: " + rain + "mm",
       };
@@ -81,7 +81,7 @@ const Weather = function () {
       return {
         maxTempPar: maxTemp.value + maxTemp.scale,
         minTempPar: minTemp.value + minTemp.scale,
-        iconUrl: `http://openweathermap.org/img/wn/${dayData.weather[0].icon}@2x.png`,
+        iconUrl: `https://openweathermap.org/img/wn/${dayData.weather[0].icon}@2x.png`,
         dayPar: date,
         rainPar: rain + "mm",
       };
