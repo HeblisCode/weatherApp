@@ -4,8 +4,8 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   font-family: "Oswald", sans-serif;
+  box-sizing: border-box;
 }
 html {
   height: 100%;
@@ -54,6 +54,14 @@ body {
   background-size: cover;
   color: var(--fontColor);
 }
+@media (min-width: 1024px) {
+  body {
+    grid-template-columns: 1024px;
+    margin: auto;
+    width: 1024px;
+    font-size: 1.4rem;
+  }
+}
 
 /*HEADER STYLING*************************************************/
 header {
@@ -69,6 +77,11 @@ header {
   justify-content: center;
   align-items: center;
 }
+#tempScale:hover,
+#refresh:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
 
 /*FORM STYLING*****************************************************/
 form {
@@ -80,6 +93,8 @@ form {
   align-items: center;
   padding: 0.3rem 0.5rem;
   border-radius: 0.3rem;
+  color: rgb(75, 75, 75);
+  text-shadow: none;
 }
 form > input {
   border: none;
@@ -109,9 +124,14 @@ form > #searchCityErrorMessage {
 .invalidInput > #searchCityErrorMessage {
   display: block;
 }
+#searchCityButton:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
 
 /*CONTENT STYLING**************************************************/
 #content {
+  width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -166,8 +186,41 @@ form > #searchCityErrorMessage {
   flex-direction: column;
   flex: 0 0 25%;
 }
-.hourCard > img {
-  width: 100%;
+@media (min-width: 768px) {
+  .hourCard {
+    flex: 0 0 20%;
+  }
+}
+@media (min-width: 1024px) {
+  .hourCard {
+    flex: 0 0 16.6%;
+  }
+}
+@media (min-width: 1025px) {
+  #hourlyWeather {
+    height: 12rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  #hourCards {
+    flex-direction: column;
+    height: calc(1024px - 2rem);
+    width: 12rem;
+    overflow-y: scroll;
+    transform: rotate(-90deg);
+    position: absolute;
+  }
+  #hourCards::-webkit-scrollbar {
+    display: none;
+  }
+  .hourCard {
+    flex: 0 0 16.6%;
+    transform: rotate(90deg);
+  }
 }
 
 /*DAILY WEATHER STYLING********************************************/
@@ -186,12 +239,6 @@ form > #searchCityErrorMessage {
   align-items: center;
   justify-content: space-between;
 }
-/* .firstColumn {
-  justify-self: left;
-}
-.lastColumn {
-  justify-self: right;
-} */
 #dailyWeather > div > img {
   height: 80%;
 }
