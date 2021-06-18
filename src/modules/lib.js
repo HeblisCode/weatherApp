@@ -26,4 +26,12 @@ function fahrenFromKelvin(temp) {
   return ((temp - 273.15) * 9) / 5 + 32;
 }
 
-export { getDateFromUnix, celsiusFromKelvin, fahrenFromKelvin };
+function tempConversion(temp, scale) {
+  if (scale === "celsius") {
+    return { value: Math.round(celsiusFromKelvin(temp)), scale: "°C" };
+  } else {
+    return { value: Math.round(fahrenFromKelvin(temp)), scale: "°F" };
+  }
+}
+
+export { getDateFromUnix, tempConversion };

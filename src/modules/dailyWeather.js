@@ -13,7 +13,7 @@ const createListElement = function (dayData) {
   rainIcon.innerText = "cloud_queue";
   rainIcon.classList.add("material-icons");
   rainContainer.classList.add("lastColumn");
-  TempPar.innerText = dayData.minTempPar + " - " + dayData.maxTempPar;
+  TempPar.innerText = dayData.minTempPar + " / " + dayData.maxTempPar;
   icon.src = dayData.iconUrl;
 
   rainContainer.appendChild(rainIcon);

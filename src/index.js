@@ -2,15 +2,9 @@ import "./index.css";
 import Weather from "./modules/weather";
 import cityForm from "./modules/cityForm";
 import view from "./modules/view";
-import settingStorage from "./modules/settingsStorage";
-import pubsub from "./modules/pubsub";
+import controller from "./modules/controller";
 
 Weather();
-settingStorage();
 view();
 cityForm();
-
-const button = document.querySelector("#tempScale");
-button.addEventListener("click", () => {
-  pubsub.publish("toggleTempScale");
-});
+controller.init();

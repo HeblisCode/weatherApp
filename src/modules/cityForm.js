@@ -26,9 +26,7 @@ const cityForm = function () {
   });
 
   searchButton.addEventListener("click", () => {
-    if (inputText.validity.valid) {
-      pubsub.publish("getWeather", inputText.value);
-    }
+    pubsub.publish("changeLastCity", inputText.value);
   });
 
   function cityNotFound() {

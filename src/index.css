@@ -135,6 +135,7 @@ form > #searchCityErrorMessage {
   display: flex;
   align-items: center;
   flex-direction: column;
+  /* grid-template-rows: auto auto 1fr; */
 }
 
 /*CURRENT WEATHER STYLING******************************************/
@@ -164,6 +165,11 @@ form > #searchCityErrorMessage {
   justify-content: center;
   flex-direction: column;
   margin: 1rem 0;
+}
+@media (min-width: 1024px) {
+  #currentMain {
+    margin: 5rem 0 6rem 0;
+  }
 }
 #currentMain > h2 {
   font-size: 2rem;
