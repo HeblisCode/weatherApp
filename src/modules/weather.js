@@ -29,7 +29,7 @@ const Weather = function () {
 
   function _parseCurrentWeatherData(currentData) {
     const date = getDateFromUnix(currentData.dt, currentData.timezone_offset);
-    const rain = currentData.rain ? currentData.rain["1h"] : "0.00";
+    const rain = currentData.rain ? currentData.rain["1h"].toFixed(2) : "0.00";
     const weatherDesc = currentData.weather[0].description;
     const temp = tempConversion(currentData.temp, currentData.tempScale);
     const isDay =
