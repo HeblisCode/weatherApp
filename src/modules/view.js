@@ -10,6 +10,7 @@ const view = function () {
     rain: ["Drizzle", "Rain", "Thunderstorm"],
     clear: ["Clear"],
     clouds: ["Clouds"],
+    snow: ["Snow"],
   };
 
   function assignWeatherStatus(currentStatus, isDay) {

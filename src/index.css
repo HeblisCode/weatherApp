@@ -36,9 +36,21 @@ html {
   --appBackground: url("./images/clearDay.png");
   --fontColor: rgb(75, 75, 75);
 }
-.rainDay,
+.rainDay {
+  --appBackground: url("./images/rainDay.png");
+  --fontColor: rgb(75, 75, 75);
+}
 .rainNight {
-  --appBackground: url("./images/rain.png");
+  --appBackground: url("./images/rainNight.png");
+  --fontColor: white;
+  text-shadow: 0px 0px 3px rgba(0, 46, 116, 0.6);
+}
+.snowDay {
+  --appBackground: url("./images/snowDay.png");
+  --fontColor: rgb(75, 75, 75);
+}
+.snowNight {
+  --appBackground: url("./images/snowNight.png");
   --fontColor: white;
   text-shadow: 0px 0px 3px rgba(0, 46, 116, 0.6);
 }
@@ -49,10 +61,19 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 3rem 1fr 2.5rem;
-  background: var(--appBackground) no-repeat fixed;
-  background-position: center top;
-  background-size: cover;
   color: var(--fontColor);
+}
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-image: var(--appBackground);
+  background-size: cover;
+  background-position: center top;
+  z-index: -1;
 }
 @media (min-width: 1024px) {
   body {
@@ -76,6 +97,10 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+#tempScale,
+#refresh {
+  user-select: none;
 }
 #tempScale:hover,
 #refresh:hover {
